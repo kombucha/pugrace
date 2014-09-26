@@ -1,5 +1,4 @@
-myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http',
-    function($scope, $rootScope, $location, $http) {
+myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http', function ($scope, $rootScope, $location, $http) {
 
     $scope.me = JSON.parse(localStorage.getItem('pugrunner_me'));
 
@@ -18,13 +17,20 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http',
         $http({
             'method': 'GET',
             'url': '/allraces'
-        }).success(function(races){
+        }).success(function (races) {
             $scope.RACES = races;
         });
     }
 
-    init();
+    function joinRace(race) {
+        $scope.me.race_name = race;
+        $scope.me.steps = 0;
+        localStorage.setItem('pugrunner_me', JSON.stringify($scope.me));
+        socket.emit('newChallenger', race);
 
+        $location.path('/race');
+        $scope.$apply();
+    }
 
     // Create race
     $scope.createRaceSubmit = function () {
@@ -45,7 +51,7 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http',
     };
 
 
-    $scope.joinRace = function(event, race) {
+    $scope.joinRace = function (event, race) {
         event.preventDefault();
         $scope.me.race_name = race.name;
         $scope.me.steps = 0;
@@ -57,20 +63,24 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http',
     };
 
 
-    $scope.leaveRace = function(event) {
+    $scope.leaveRace = function (event) {
         event.preventDefault();
         $scope.me.race_name = null;
         localStorage.setItem('pugrunner_me', JSON.stringify($scope.me));
         event.target.remove();
         $location.reload();
     };
-    
-    
-    
-    // Insert new race
-    socket.on('newRaceCreated', function(data) {
 
-        var newRace = data.race.name, 
+    $scope.quit = function (event) {
+        localStorage.clear();
+        $location.path('/');
+    }
+
+
+    // Insert new race
+    socket.on('newRaceCreated', function (data) {
+
+        var newRace = data.race.name,
             races = data.races;
 
         $scope.newRace_name = '';
@@ -83,27 +93,11 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http',
     });
 
 
-
-    socket.on('updateRaces', function(races) {
+    socket.on('updateRaces', function (races) {
         $scope.RACES = races;
         $scope.$apply();
     });
-    
-    
-    function joinRace(race) {
-        $scope.me.race_name = race;
-        $scope.me.steps = 0;
-        localStorage.setItem('pugrunner_me', JSON.stringify($scope.me));
-        socket.emit('newChallenger', race);
-        
-        $location.path('/race');
-        $scope.$apply();
-    }
 
 
-    $scope.quit = function(event) {
-        localStorage.clear();
-        $location.path('/');
-    }
-
+    init();
 }]);

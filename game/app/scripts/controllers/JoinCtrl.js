@@ -1,27 +1,23 @@
 
 myApp.controller('JoinCtrl', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
-    
-    $scope.$id = 'JoinCtrl';
 
+    var me;
+
+    $scope.$id = 'JoinCtrl';
+    $scope.character = 'blackpug';
 
     if (localStorage.getItem('pugrunner_me')) {
-        $location.path('/races');
+        $location.path('races');
     }
-    
-    var me;
-    $scope.character = 'blackpug';
-    
 
     $scope.openLoginModal = function() {
         $rootScope.$broadcast('openLoginModal');
     };
 
-    
     $scope.nextInput = function(sel) {
         document.querySelector(sel).focus();
     };
-    
-    
+
     $scope.createRunner = function () {
 
         var _name       = $scope.name_a.toUpperCase() + $scope.name_b.toUpperCase() + $scope.name_c.toUpperCase();
@@ -33,7 +29,7 @@ myApp.controller('JoinCtrl', ['$scope', '$rootScope', '$location', function($sco
             socket.emit('askCreateRunner', me);
         }
     };
-    
+
     socket.on('runnerCreated', function(runner) {
         localStorage.setItem('pugrunner_me', JSON.stringify(runner));
         $location.path('/races');
@@ -46,8 +42,7 @@ myApp.controller('JoinCtrl', ['$scope', '$rootScope', '$location', function($sco
         names[1].value = '';
         names[2].value = '';
     });
-    
-    
+
     $scope.$on('updateCharacter', function(event, char) {
         $scope.character = char;
     });
