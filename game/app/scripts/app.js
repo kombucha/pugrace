@@ -8,22 +8,22 @@ myApp.config(function ($routeProvider) {
             templateUrl: 'views/join.html',
             controller: 'JoinCtrl'
         })
-        .when('races', {
+        .when('/races', {
             templateUrl: 'views/races.html',
             controller: 'RacesCtrl'
         })
 
-        .when('race', {
+        .when('/race', {
             templateUrl: 'views/race.html',
             controller: 'RaceCtrl'
         })
 
-        .when('race/:raceName/:runnerName', {
+        .when('/race/:raceName/:runnerName', {
             templateUrl: 'views/race.html',
             controller: 'RaceCtrl'
         })
 
-        .when('leaderboard', {
+        .when('/leaderboard', {
             templateUrl: 'views/leaderboard.html',
             controller: 'LeaderboardCtrl'
         });

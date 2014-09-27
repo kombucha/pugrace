@@ -11,7 +11,7 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http', fun
             var data = {
                 'me': $scope.me
             };
-            socket.emit('restoreMe', data);
+            io.socket.emit('restoreMe', data);
         }
 
         $http({
@@ -26,7 +26,7 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http', fun
         $scope.me.race_name = race;
         $scope.me.steps = 0;
         localStorage.setItem('pugrunner_me', JSON.stringify($scope.me));
-        socket.emit('newChallenger', race);
+        io.socket.emit('newChallenger', race);
 
         $location.path('/race');
         $scope.$apply();
@@ -46,7 +46,7 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http', fun
                 'owner': $scope.me
             };
 
-            socket.emit('askNewRace', data);
+            io.socket.emit('askNewRace', data);
         }
     };
 
@@ -58,7 +58,7 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http', fun
         localStorage.setItem('pugrunner_me', JSON.stringify($scope.me));
 
         var socketData = {'runner': $scope.me, 'race': race};
-        socket.emit('joinRace', socketData);
+        io.socket.emit('joinRace', socketData);
         $location.path('/race');
     };
 
@@ -78,7 +78,7 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http', fun
 
 
     // Insert new race
-    socket.on('newRaceCreated', function (data) {
+    io.socket.on('newRaceCreated', function (data) {
 
         var newRace = data.race.name,
             races = data.races;
@@ -93,7 +93,7 @@ myApp.controller('RacesCtrl', ['$scope', '$rootScope', '$location', '$http', fun
     });
 
 
-    socket.on('updateRaces', function (races) {
+    io.socket.on('updateRaces', function (races) {
         $scope.RACES = races;
         $scope.$apply();
     });

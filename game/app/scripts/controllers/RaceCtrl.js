@@ -67,7 +67,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
     /* NEW CHALLENGER
         - race
     */
-    socket.on('newChallenger', function(race) {
+    io.socket.on('newChallenger', function(race) {
         if ($scope.me.race_name === race.name) {
             $scope.RACE.runners = race.runners;
             $scope.$apply();
@@ -86,8 +86,8 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
             'remainingQuizzSIze': $scope.RACE.quizz.items.length
         };
 
-        socket.emit('raceStarted', data);
-        socket.emit('nextQuestion', data);
+        io.socket.emit('raceStarted', data);
+        io.socket.emit('nextQuestion', data);
     };
 
 
@@ -95,7 +95,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
         - race
         - question_key
     */
-    socket.on('goToNextQuestion', function(data) {
+    io.socket.on('goToNextQuestion', function(data) {
 
         // Not for me
         if (data.race.name !== $scope.me.race_name) return;
@@ -117,7 +117,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
         }, 1000);
 
         timeout = $timeout(function() {
-            socket.emit('nextQuestion', obj);
+            io.socket.emit('nextQuestion', obj);
         }, questionTimer * 1000);
         //$scope.$apply();
     });
@@ -136,7 +136,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
             'timestamp':    Date.now()
         };
 
-        socket.emit('sendAnswer', data);
+        io.socket.emit('sendAnswer', data);
     };
 
 
@@ -146,7 +146,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
         - question_key
         - goodanswer
     */
-    socket.on('reward', function(data) {
+    io.socket.on('reward', function(data) {
 
         // Not my race
         if (data.race.name !== $scope.me.race_name) return;
@@ -162,7 +162,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
             if (runner_name === $scope.me.name) {
                 $scope.me.steps = $scope.RACE.runners[data.runner.name].steps;
                 localStorage.setItem('pugrunner_me', JSON.stringify($scope.me));
-                socket.emit('runnerUpdated', $scope.me);
+                io.socket.emit('runnerUpdated', $scope.me);
             }
 
             // Stop the runner
@@ -174,7 +174,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
 
             $timeout(function() {
                 $scope.RACE.runners[runner_name].state = 'rewarded';
-                socket.emit('nextQuestion', obj);
+                io.socket.emit('nextQuestion', obj);
             }, 500);
 
         } else {
@@ -183,7 +183,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
             if (data.runner.name === $scope.me.name) {
                 $scope.RACE.runners[data.runner.name].state = 'answered';
                 $scope.$apply();
-                socket.emit('runnerUpdated', $scope.me);
+                io.socket.emit('runnerUpdated', $scope.me);
             }
         }
     });
@@ -197,7 +197,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
         - question_key
         - goodanswer
     */
-    socket.on('finish', function(data) {
+    io.socket.on('finish', function(data) {
         // Not my race
         if (data.race.name !== $scope.me.race_name) return;
 
@@ -216,7 +216,7 @@ myApp.controller('RaceCtrl', ['$scope', '$rootScope', '$timeout', '$http', '$int
 
 
     /* ERROR : NO RACE */
-    socket.on('noRace', function() {
+    io.socket.on('noRace', function() {
         window.location = '/races';
     });
 

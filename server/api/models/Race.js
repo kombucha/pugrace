@@ -7,6 +7,7 @@
 
 module.exports = {
 
+    autosubscribe: ['destroy', 'update', 'add:runs', 'remove:runs'],
     attributes: {
         name: 'string',
         owner: {

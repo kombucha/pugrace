@@ -19,12 +19,12 @@
     border: none;
     outline: none;
     text-indent: -999999999px;
-    background: url('/assets/images/prev.png') no-repeat;
-    
+    background: url('../images/prev.png') no-repeat;
+
     &:last-child {
         left: auto;
         right: -40px;
-        background: url('/assets/images/next.png') no-repeat;
+        background: url('../images/next.png') no-repeat;
     }
 }
 
@@ -59,11 +59,11 @@
 }
 
 [data-page="1"] {
-    
+
     .characters {
         margin-left: -392px;
     }
-    
+
     .characters_nav:last-child {
         display: none;
     }
@@ -90,25 +90,25 @@
 }
 
 .__blackpug {
-    background-image: url('/assets/images/characters/blackpug.png');
+    background-image: url('../images/characters/blackpug.png');
 }
 
 .__whitepug {
-    background-image: url('/assets/images/characters/whitepug.png');
+    background-image: url('../images/characters/whitepug.png');
 }
 
 .__mj {
-    background-image: url('/assets/images/characters/mj.png');
+    background-image: url('../images/characters/mj.png');
 }
 
 .__guinea {
-    background-image: url('/assets/images/characters/guinea.png');
+    background-image: url('../images/characters/guinea.png');
 }
 
 .__pig {
-    background-image: url('/assets/images/characters/pig.png');
+    background-image: url('../images/characters/pig.png');
 }
 
 .__ufo {
-    background-image: url('/assets/images/characters/ufo.png');
+    background-image: url('../images/characters/ufo.png');
 }

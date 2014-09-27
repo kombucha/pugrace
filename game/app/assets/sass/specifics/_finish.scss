@@ -38,14 +38,14 @@
 
     &:after {
         content: 'YOU WON';
-        background-image: url('/assets/images/winner.png');
+        background-image: url('../images/winner.png');
         background-size: cover;
     }
 }
 
 .__looser {
-    
-    
+
+
 
     &:before {
         background: rgba(231, 76, 60, .9);
@@ -53,7 +53,7 @@
 
     &:after {
         content: 'YOU LOST';
-        background-image: url('/assets/images/looser.png');
+        background-image: url('../images/looser.png');
         background-size: cover;
     }
 }

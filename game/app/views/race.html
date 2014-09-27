@@ -8,7 +8,7 @@
 
 <!-- TRACK -->
 <ul class="runners">
-    <li data-ng-repeat="runner in RACE.runners" 
+    <li data-ng-repeat="runner in RACE.runners"
         class="runner __{{runner.state}}"
         id="runner-{{runner.name}}"
         data-steps="{{runner.steps}}"
@@ -39,16 +39,16 @@
         </span>
         <div data-ng-switch-when="flag">
           <span>Which flag is it ?</span><br>
-          <img data-ng-src="/assets/images/flags/{{QUESTIONS[QUESTION_KEY].question}}.jpg" alt="">
+          <img data-ng-src="assets/images/flags/{{QUESTIONS[QUESTION_KEY].question}}.jpg" alt="">
         </div>
         <div data-ng-switch-when="photo">
           <span>Where is it ?</span><br>
-          <img data-ng-src="/assets/images/photos/{{QUESTIONS[QUESTION_KEY].question}}.jpg" alt="">
+          <img data-ng-src="assets/images/photos/{{QUESTIONS[QUESTION_KEY].question}}.jpg" alt="">
         </div>
     </div>
     <ul class="gamepad_options">
       <li class="gamepad_option" data-ng-repeat="(option, value) in QUESTIONS[QUESTION_KEY].options">
-        <button class="gamepad_button" 
+        <button class="gamepad_button"
                 data-ng-disabled="RACE.runners[me.name].state === 'answered'"
                 data-ng-click="sendAnswer($event, option)"
                 data-ng-bind="value"></button>

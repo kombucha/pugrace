@@ -2,11 +2,11 @@
 .join {
     background: $color-main-dark;
     @include full(0);
-    background-image: url('/assets/images/intro.png');
+    background-image: url('../images/intro.png');
     background-repeat: repeat-x;
     background-position: bottom left;
     padding-top: 60px;
-    
+
     &:before, &:after {
         content: '';
         display: block;
@@ -17,16 +17,16 @@
         bottom: 40px;
         left: -200px;
     }
-    
+
     &:before {
-        background: url('/assets/images/anime/whitepug.gif') center no-repeat;
+        background: url('../images/anime/whitepug.gif') center no-repeat;
         background-size: cover;
         -webkit-animation: run 5s infinite;
         animation: run 5s infinite;
     }
-    
+
     &:after {
-        background: url('/assets/images/anime/blackpug.gif') center no-repeat;
+        background: url('../images/anime/blackpug.gif') center no-repeat;
         background-size: cover;
         -webkit-animation: run 4s .5s infinite;
         animation: run 4s .5s infinite;
@@ -118,7 +118,7 @@
     text-align: center;
     @include remIt('font-size', 30);
     @extend %input;
-    
+
     &:first-child {
         margin-left: 0;
     }

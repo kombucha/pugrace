@@ -44,7 +44,7 @@
     display: block;
     width: 1000px;
     height: 338px;
-    background: url('/assets/images/field.jpg') no-repeat top left;
+    background: url('../images/field.jpg') no-repeat top left;
     background-size: cover;
     border: 10px solid #eee;
     border-radius: 10px;
@@ -97,22 +97,22 @@
     margin: 0;
     z-index: 1;
     position: absolute;
-    
-    &.__whitepug  { background-image: url('/assets/images/freezed/whitepug.png'); background-size: cover; }
-    &.__blackpug  { background-image: url('/assets/images/freezed/blackpug.png'); background-size: cover;}
-    &.__pig       { background-image: url('/assets/images/freezed/pig.png'); background-size: cover;}
-    &.__guinea    { background-image: url('/assets/images/freezed/guinea.png'); background-size: cover;}
-    &.__mj        { background-image: url('/assets/images/freezed/mj.png'); background-size: cover;}
-    &.__ufo       { background-image: url('/assets/images/freezed/ufo.png'); background-size: cover;}
+
+    &.__whitepug  { background-image: url('../images/freezed/whitepug.png'); background-size: cover; }
+    &.__blackpug  { background-image: url('../images/freezed/blackpug.png'); background-size: cover;}
+    &.__pig       { background-image: url('../images/freezed/pig.png'); background-size: cover;}
+    &.__guinea    { background-image: url('../images/freezed/guinea.png'); background-size: cover;}
+    &.__mj        { background-image: url('../images/freezed/mj.png'); background-size: cover;}
+    &.__ufo       { background-image: url('../images/freezed/ufo.png'); background-size: cover;}
 }
 
 .__animated {
-    .__whitepug  { background-image: url('/assets/images/animated/whitepug.gif'); background-size: cover; }
-    .__blackpug  { background-image: url('/assets/images/animated/blackpug.gif'); background-size: cover;}
-    .__pig       { background-image: url('/assets/images/animated/pig.gif'); background-size: cover;}
-    .__guinea    { background-image: url('/assets/images/animated/guinea.gif'); background-size: cover;}
-    .__mj        { background-image: url('/assets/images/animated/mj.gif'); background-size: cover;}
-    .__ufo       { background-image: url('/assets/images/animated/ufo.gif'); background-size: cover;}
+    .__whitepug  { background-image: url('../images/animated/whitepug.gif'); background-size: cover; }
+    .__blackpug  { background-image: url('../images/animated/blackpug.gif'); background-size: cover;}
+    .__pig       { background-image: url('../images/animated/pig.gif'); background-size: cover;}
+    .__guinea    { background-image: url('../images/animated/guinea.gif'); background-size: cover;}
+    .__mj        { background-image: url('../images/animated/mj.gif'); background-size: cover;}
+    .__ufo       { background-image: url('../images/animated/ufo.gif'); background-size: cover;}
 }
 
 [data-steps="10"] .runner_anime {

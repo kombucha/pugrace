@@ -26,17 +26,17 @@ myApp.controller('JoinCtrl', ['$scope', '$rootScope', '$location', function($sco
 
         if (_name) {
             me = new Runner(_name, _character, _pwd);
-            socket.emit('askCreateRunner', me);
+            io.socket.emit('askCreateRunner', me);
         }
     };
 
-    socket.on('runnerCreated', function(runner) {
+    io.socket.on('runnerCreated', function(runner) {
         localStorage.setItem('pugrunner_me', JSON.stringify(runner));
         $location.path('/races');
         $scope.$apply();
     });
 
-    socket.on('unavailableName', function(){
+    io.socket.on('unavailableName', function(){
         alert('unavailable name');
         names[0].value = '';
         names[1].value = '';

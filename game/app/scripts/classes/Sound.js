@@ -4,7 +4,7 @@
  */
 function Sound() {
     this.player = document.getElementById('soundPlayer');
-    this.filePath = '/assets/sounds/';
+    this.filePath = 'assets/sounds/';
 }
 
 
