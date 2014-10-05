@@ -21,5 +21,5 @@
  */
 
 module.exports.routes = {
-
+    'POST /api/race/:id/join': 'RaceController.join'
 };
